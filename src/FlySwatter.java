@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 public class FlySwatter {
 	JFrame frame;
-	final int WIDTH = 1100;
-	final int HEIGHT = 700;
+	final static int WIDTH = 1100;
+	final static int HEIGHT = 700;
 	GamePanel gp;
 FlySwatter(){
 	frame = new JFrame();
