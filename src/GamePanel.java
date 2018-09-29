@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -24,9 +25,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Font gaah = new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30);
 	Font asdfghjkl = new Font("Comic Sans MS", Font.PLAIN, 20);
 	public static BufferedImage WomanImg;
-	Character cha = new Character(50, 350, 100, 100);
+	public static BufferedImage CharacterImg;
+	public static BufferedImage FlyImg;
+	public static BufferedImage RoomImg;
+	Character cha = new Character(0, 200, 400, 500);
 	ObjectManager oj = new ObjectManager(cha);
-
 	public void um() {
 
 	}
@@ -38,6 +41,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void ug() {
 		cha.update();
 		oj.update();
+		oj.me();
+		oj.cc();
+		oj.po();
+		if(oj.fc == 300) {
+			c = e;
+		}
 	}
 
 	public void ue() {
@@ -60,18 +69,20 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(gaah);
 		g.drawString("Welcome to the Fly Swatting game", 300, 50);
 		g.setFont(asdfghjkl);
-		g.drawString("You are in your living room. There is a bowl of open fruit. Your window is also open.", 140, 100);
+		g.drawString("You are in your living room. There is a bowl of open fruit.", 140, 100);
 		g.drawString("Now there's a bunch of flies in your house. Kill them :)", 300, 121);
-		g.drawString("But first, you should close your window to stop the flies from coming in.", 220, 142);
-		g.drawString("Press arrow keys to move. Press delete to kill flies. Press 1 to close your window.", 160, 163);
+		g.drawString("Press arrow keys to move. Just run into the flies to kill them", 150, 163);
+		g.drawString("To win, you must kill 300 flies!", 400, 184);
 		g.drawImage(GamePanel.WomanImg, 400, 350, 400, 300, null);
 	}
 
 	public void dg(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, FlySwatter.WIDTH, FlySwatter.HEIGHT);
+		g.drawImage(GamePanel.RoomImg, 0, 0, FlySwatter.WIDTH, FlySwatter.HEIGHT, null);
 		cha.draw(g);
 		oj.draw(g);
+		g.setColor(Color.orange);
+		g.setFont(asdfghjkl);
+		g.drawString("Dead Flies:" + oj.fc, 900, 30);
 	}
 
 	public void de(Graphics g) {
@@ -87,6 +98,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	GamePanel() {
 		try {
 			WomanImg = ImageIO.read(this.getClass().getResourceAsStream("woman.jpg"));
+			CharacterImg = ImageIO.read(this.getClass().getResourceAsStream("character.png"));
+			FlyImg = ImageIO.read(this.getClass().getResourceAsStream("Fly.png"));
+			RoomImg = ImageIO.read(this.getClass().getResourceAsStream("room.jpg"));
 		} catch (IOException e) {
 
 			// TODO Auto-generated catch block
@@ -150,6 +164,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		System.out.println("2 D:");
 		if (yee.getKeyCode() == KeyEvent.VK_ENTER) {
 			c++;
+			if(c == m) {
+				cha = new Character(cha.x, cha.y, cha.width, cha.height);
+				oj = new ObjectManager(cha);
+			}
 		}
 		if (c > e) {
 			c = m;

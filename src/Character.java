@@ -2,15 +2,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Character extends GameObject{
-	int speed = 5;
+	int speed = 15;
 Character(int x, int y, int width, int height){
 	super(x, y, width, height);
 }
 public void update() {
-	
+	super.update();
 }
 public void draw(Graphics g) {
-	   g.setColor(Color.BLUE);
-       g.fillRect(x, y, width, height);
+g.drawImage(GamePanel.CharacterImg, x, y, width, height, null);
 }
 }
