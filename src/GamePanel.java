@@ -167,6 +167,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if(c == m) {
 				cha = new Character(cha.x, cha.y, cha.width, cha.height);
 				oj = new ObjectManager(cha);
+				oj.fc = 0;
 			}
 		}
 		if (c > e) {
