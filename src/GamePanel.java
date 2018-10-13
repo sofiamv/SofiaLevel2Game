@@ -59,7 +59,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.red);
 		g.setFont(gah);
 		g.drawString("Fly Swatting Game", 300, 200);
-		g.drawString("press enter for instructions", 200, 500);
+		g.setFont(gaah);
+		g.drawString("press enter for VERY IMPORTANT instructions", 200, 500);
 	}
 
 	public void di(Graphics g) {
@@ -72,7 +73,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("You are in your living room. There is a bowl of open fruit.", 140, 100);
 		g.drawString("Now there's a bunch of flies in your house. Kill them :)", 300, 121);
 		g.drawString("Press arrow keys to move. Just run into the flies to kill them", 150, 163);
-		g.drawString("To win, you must kill 300 flies!", 400, 184);
+		g.setFont(gaah);
+		g.drawString("To win, you must kill 300 flies!", 300, 200);
+		g.setFont(asdfghjkl);
+		g.drawString("Press enter to play!", 300, 230);
 		g.drawImage(GamePanel.WomanImg, 400, 350, 400, 300, null);
 	}
 
@@ -91,8 +95,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(gah);
 		g.setColor(Color.YELLOW);
 		g.drawString("Congratulations! you have won!", 100, 300);
+		g.drawString("You have killed over 300 flies!!", 200, 400);
 		g.setFont(gaah);
-		g.drawString("press enter to restart", 400, 400);
+		g.drawString("press enter to restart", 400, 600);
 	}
 
 	GamePanel() {
@@ -100,7 +105,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			WomanImg = ImageIO.read(this.getClass().getResourceAsStream("woman.jpg"));
 			CharacterImg = ImageIO.read(this.getClass().getResourceAsStream("character.png"));
 			FlyImg = ImageIO.read(this.getClass().getResourceAsStream("Fly.png"));
-			RoomImg = ImageIO.read(this.getClass().getResourceAsStream("room.jpg"));
+			RoomImg = ImageIO.read(this.getClass().getResourceAsStream("betterroom.jpg"));
 		} catch (IOException e) {
 
 			// TODO Auto-generated catch block
@@ -167,7 +172,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if(c == m) {
 				cha = new Character(cha.x, cha.y, cha.width, cha.height);
 				oj = new ObjectManager(cha);
-				oj.fc = 0;
+			}
+				if(c == g) {
+				oj.sfc(0);				
 			}
 		}
 		if (c > e) {

@@ -12,8 +12,8 @@ public class ObjectManager {
 	ObjectManager(Character charac) {
 		this.ch = charac;
 	}
-	public int gfc() {
-		return this.fc;
+	public void sfc(int a) {
+		fc = a;
 	}
 
 	public void update() {
