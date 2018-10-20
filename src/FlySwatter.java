@@ -36,8 +36,5 @@ public void start() throws InterruptedException{
 	for(i = seconds; i > 0; i--) {
 		Thread.sleep(1000);
 	}
-	if(i == 0) {
-		gp.timerout();
-	}
 }
 }

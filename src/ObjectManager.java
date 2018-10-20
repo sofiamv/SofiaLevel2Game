@@ -7,7 +7,7 @@ public class ObjectManager {
 	long et = 0;
 	int est = 800;
 	int fc = 0;
-	int time = 80;
+	int time = 800;
 	ArrayList<Flies> fo = new ArrayList<Flies>();
 
 	ObjectManager(Character charac) {
@@ -35,10 +35,11 @@ public class ObjectManager {
 		fo.add(a);
 	}
 
-	public void mt() throws InterruptedException {
-for(int i = time; i > 0; i--) {
-	Thread.sleep(1000);
-	time--;
+	public void mt(){
+try {
+	Thread.sleep(1000 * time);
+} catch (InterruptedException e) {
+	e.printStackTrace();
 }
 	}
 

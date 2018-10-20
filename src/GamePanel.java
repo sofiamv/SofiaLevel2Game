@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	public void ug() throws InterruptedException {
+	public void ug() {
 		cha.update();
 		oj.update();
 		oj.me();
