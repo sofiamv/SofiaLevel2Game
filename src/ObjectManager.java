@@ -5,13 +5,15 @@ import java.util.Random;
 public class ObjectManager {
 	Character ch;
 	long et = 0;
-	int est = 50;
+	int est = 800;
 	int fc = 0;
+	int time = 80;
 	ArrayList<Flies> fo = new ArrayList<Flies>();
 
 	ObjectManager(Character charac) {
 		this.ch = charac;
 	}
+
 	public void sfc(int a) {
 		fc = a;
 	}
@@ -33,9 +35,16 @@ public class ObjectManager {
 		fo.add(a);
 	}
 
+	public void mt() throws InterruptedException {
+for(int i = time; i > 0; i--) {
+	Thread.sleep(1000);
+	time--;
+}
+	}
+
 	public void me() {
 		if (System.currentTimeMillis() - et >= est) {
-			af(new Flies(new Random().nextInt(501) + 200, 0, 50, 50));
+			af(new Flies(new Random().nextInt(FlySwatter.WIDTH), 0, 50, 50));
 
 			et = System.currentTimeMillis();
 		}
@@ -50,8 +59,8 @@ public class ObjectManager {
 	}
 
 	public void cc() {
-		for(int i = 0; i < fo.size(); i++) {
-			if(fo.get(i).cb.intersects(ch.cb)) {
+		for (int i = 0; i < fo.size(); i++) {
+			if (fo.get(i).cb.intersects(ch.cb)) {
 				fo.get(i).isAlive = false;
 				fc++;
 			}

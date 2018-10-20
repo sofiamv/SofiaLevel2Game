@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public static BufferedImage CharacterImg;
 	public static BufferedImage FlyImg;
 	public static BufferedImage RoomImg;
-	Character cha = new Character(0, 200, 400, 500);
+	Character cha = new Character(0, 200, 250, 300);
 	ObjectManager oj = new ObjectManager(cha);
 	public void um() {
 
@@ -38,13 +38,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	}
 
-	public void ug() {
+	public void ug() throws InterruptedException {
 		cha.update();
 		oj.update();
 		oj.me();
+		oj.mt();
 		oj.cc();
 		oj.po();
-		if(oj.fc == 300) {
+		if(oj.fc == 40) {
+			c = e;
+		}
+		if(oj.time == 0) {
 			c = e;
 		}
 	}
@@ -74,7 +78,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Now there's a bunch of flies in your house. Kill them :)", 300, 121);
 		g.drawString("Press arrow keys to move. Just run into the flies to kill them", 150, 163);
 		g.setFont(gaah);
-		g.drawString("To win, you must kill 300 flies!", 300, 200);
+		g.drawString("To win, you must kill 40 flies!", 300, 200);
 		g.setFont(asdfghjkl);
 		g.drawString("Press enter to play!", 300, 230);
 		g.drawImage(GamePanel.WomanImg, 400, 350, 400, 300, null);
@@ -87,6 +91,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.orange);
 		g.setFont(asdfghjkl);
 		g.drawString("Dead Flies:" + oj.fc, 900, 30);
+		g.drawString("Time left:" + oj.time, 900, 60);
 	}
 
 	public void de(Graphics g) {
@@ -95,7 +100,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(gah);
 		g.setColor(Color.YELLOW);
 		g.drawString("Congratulations! you have won!", 100, 300);
-		g.drawString("You have killed over 300 flies!!", 200, 400);
+		g.drawString("You have killed over 40 flies!!", 200, 400);
 		g.setFont(gaah);
 		g.drawString("press enter to restart", 400, 600);
 	}
@@ -172,6 +177,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if(c == m) {
 				cha = new Character(cha.x, cha.y, cha.width, cha.height);
 				oj = new ObjectManager(cha);
+				oj.fc = 0;
 			}
 				if(c == g) {
 				oj.sfc(0);				
