@@ -20,6 +20,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int i = 1;
 	final int g = 2;
 	final int e = 3;
+	final int e2 = 4;
 	int c = m;
 	Font gah = new Font("Comic Sans MS", Font.ROMAN_BASELINE, 55);
 	Font gaah = new Font("Comic Sans MS", Font.ROMAN_BASELINE, 30);
@@ -41,22 +42,25 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void ug() {
 		cha.update();
 		oj.update();
+		oj.TIME();
 		oj.me();
-		oj.mt();
 		oj.cc();
 		oj.po();
 		if(oj.fc == 40) {
 			c = e;
 		}
-		if(oj.time == 0) {
-			c = e;
+
+		if(oj.timer2 == 0) {
+		c = e2;
 		}
 	}
 
 	public void ue() {
 
 	}
+	public void ue2() {
 
+	}
 	public void dm(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillRect(0, 0, FlySwatter.WIDTH, FlySwatter.HEIGHT);
@@ -78,7 +82,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Now there's a bunch of flies in your house. Kill them :)", 300, 121);
 		g.drawString("Press arrow keys to move. Just run into the flies to kill them", 150, 163);
 		g.setFont(gaah);
-		g.drawString("To win, you must kill 40 flies!", 300, 200);
+		g.drawString("To win, you must kill 40 flies in 60 seconds!", 300, 200);
 		g.setFont(asdfghjkl);
 		g.drawString("Press enter to play!", 300, 230);
 		g.drawImage(GamePanel.WomanImg, 400, 350, 400, 300, null);
@@ -91,7 +95,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.orange);
 		g.setFont(asdfghjkl);
 		g.drawString("Dead Flies:" + oj.fc, 900, 30);
-		g.drawString("Time left:" + oj.time, 900, 60);
+		g.setColor(Color.MAGENTA);
+		g.drawString("Time left:" + oj.timer2, 900, 60);
 	}
 
 	public void de(Graphics g) {
@@ -104,7 +109,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setFont(gaah);
 		g.drawString("press enter to restart", 400, 600);
 	}
-
+	public void de2(Graphics g) {
+		g.setColor(Color.magenta);
+		g.fillRect(0, 0, FlySwatter.WIDTH, FlySwatter.HEIGHT);
+		g.setFont(gah);
+		g.setColor(Color.YELLOW);
+		g.drawString("You have lost!", 100, 300);
+		g.drawString("but have faith and play again!", 200, 400);
+		g.setFont(gaah);
+		g.drawString("press enter to restart", 400, 600);
+	}
 	GamePanel() {
 		try {
 			WomanImg = ImageIO.read(this.getClass().getResourceAsStream("woman.jpg"));
@@ -140,6 +154,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		} else if (c == e) {
 			de(gg);
 		}
+		else if (c == e2) {
+			de2(gg);
+		}
 	}
 
 	@Override
@@ -159,6 +176,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		} else if (c == e) {
 			ue();
 
+		} else if (c == e2) {
+			ue2();
 		}
 	}
 
@@ -177,10 +196,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if(c == m) {
 				cha = new Character(cha.x, cha.y, cha.width, cha.height);
 				oj = new ObjectManager(cha);
-				oj.fc = 0;
 			}
 				if(c == g) {
-				oj.sfc(0);				
+				oj.sfc(0);
+				oj.timer2 = 60;
 			}
 		}
 		if (c > e) {

@@ -5,9 +5,12 @@ import java.util.Random;
 public class ObjectManager {
 	Character ch;
 	long et = 0;
+	long eet = 1000;
 	int est = 800;
+	int timer2 = 60;
+	int timer = 1000;
 	int fc = 0;
-	int time = 800;
+	// int time = 800;
 	ArrayList<Flies> fo = new ArrayList<Flies>();
 
 	ObjectManager(Character charac) {
@@ -35,22 +38,18 @@ public class ObjectManager {
 		fo.add(a);
 	}
 
-	public void mt(){
-try {
-	Thread.sleep(1000 * time);
-} catch (InterruptedException e) {
-	e.printStackTrace();
-}
-	}
-
 	public void me() {
 		if (System.currentTimeMillis() - et >= est) {
 			af(new Flies(new Random().nextInt(FlySwatter.WIDTH), 0, 50, 50));
-
 			et = System.currentTimeMillis();
 		}
 	}
-
+	public void TIME() {
+		if (System.currentTimeMillis() - eet >= timer) {
+			timer2--;
+			eet = System.currentTimeMillis();
+		}
+	}
 	public void po() {
 		for (int i = 0; i < fo.size(); i++) {
 			if (fo.get(i).isAlive == false) {
